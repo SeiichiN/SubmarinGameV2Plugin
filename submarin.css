@@ -1,0 +1,103 @@
+/*
+#submarin-game .clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+*/
+
+#submarin-game {
+    position: relative;
+    height: 600px;
+    margin-bottom: 20px;
+}
+
+#submarin-game article {
+    position: relative;
+}
+
+#submarin-game #des-howto-play {
+    display: none;
+    background-color: #eee;
+    border: solid 1px #ccc;
+    padding: 5px;
+    box-sizing: border-box;
+}
+#submarin-game #des-howto-play header {
+    margin-bottom: 0.4em;
+}
+
+#submarin-game #des-howto-play h1 {
+    margin: 0;
+}
+
+#submarin-game #des-howto-play p {
+    line-height: 1.3;
+    margin: 0;
+    font-size: 14px;
+}
+#submarin-game #howto-btn {
+    cursor: pointer;
+}
+
+
+#submarin-game .select {
+    cursor: pointer;
+}
+
+#submarin-game table {
+    border-collapse: collapse;
+}
+
+#submarin-game th, td {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+}
+
+#submarin-game td {
+    border: solid 1px #aaa;
+}
+
+#submarin-game .score {
+    height: 150px;
+}
+
+#submarin-game #replay {
+    margin-top: 10px;
+    display: none;
+}
+
+#submarin-game #players-set {
+	width: 270px;
+}
+
+#submarin-game #players-set input {
+	width: 45px;
+}
+
+#submarin-game .ship-name {
+	float: left;
+	line-height: 40px;
+}
+
+#submarin-game .ship-cell {
+	float: right;
+}
+
+@media screen and (min-width: 768px) {
+    #submarin-game #howto-btn {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+		z-index: 10;
+    }
+
+    #submarin-game #des-howto-play {
+        top: 0px;
+        right: 0px;
+    }
+    #submarin-game #close-des {
+        right: 0px;
+    }
+}
