@@ -278,10 +278,19 @@ function selection(cell) {
         return false;
     }
 
+    function kekka_myship(idname, times) {
+        let mykekka = document.getElementById(idname);
+        let mark = "X".repeat(times);
+        mykekka.textContent = mark;
+        mykekka.setAttribute('style', 'color: #f00', 'fontWeight: bold');
+    }
 
     // 敵の攻撃
     let tekiHit = false;
+    let damage;
+    
     for (const [n, s] of roboResult) {
+        let idname = 'kekka-' + n.substr(0, 3);
         switch(s) {
             case "命中":
                 tekiKekka.textContent = "敵の攻撃が " + n + " に命中。";
@@ -289,6 +298,8 @@ function selection(cell) {
                     {opacity: 1, backgroundColor: "#f00"},
                     {opacity: 1, backgroundColor: "#fff"}
                 ], { duration: 1000 });
+                damage = countDamage(n);
+                kekka_myship(idname, damage[n]);
                 tekiHit = true;
                 break;
             case "撃沈":
@@ -297,6 +308,8 @@ function selection(cell) {
                     {opacity: 1, backgroundColor: "#f00"},
                     {opacity: 1, backgroundColor: "#fff"}
                 ], { duration: 1000, iterations: 2 });
+                damage = countDamage(n);
+                kekka_myship(idname, damage[n]);
                 tekiHit = true;
                 break;
             default:
@@ -518,6 +531,17 @@ function setUserShip() {
     });
 }
 
+let makeCountDamage = function() {
+    let damage = {
+        Odyssey: 0,
+        Poseidon: 0,
+        Hermes: 0
+    };
+    return function(name) {
+        damage[name]++;
+        return damage;
+    };
+};
 
 // 広域変数
 const ALPHABET = "ABCDEFG";
@@ -558,6 +582,7 @@ let odyssey = [];
 let poseidon = [];
 let hermes = [];
 
+let countDamage = makeCountDamage();
 
 window.onload = (() => {
     init();               // プレーヤー側の攻撃準備
