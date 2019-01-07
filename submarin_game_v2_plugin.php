@@ -72,14 +72,17 @@ function play() {
                 		<div class="dotCom" id="dotCom1">
                 			<span class="dotComName"></span><!-- SeaTiger -->
                 			<span class="dotComKekka"></span>
+                            <span class="dotComX"></span>
                 		</div>
                 		<div class="dotCom" id="dotCom2">
                 			<span class="dotComName"></span><!-- Papiyon -->
                 			<span class="dotComKekka"></span>
+                            <span class="dotComX"></span>
                 		</div>
                 		<div class="dotCom" id="dotCom3">
                 			<span class="dotComName"></span><!-- Mermaid -->
                 			<span class="dotComKekka"></span>
+                            <span class="dotComX"></span>
                 		</div>
                 	</div>
                     <p id="kekka"></p>

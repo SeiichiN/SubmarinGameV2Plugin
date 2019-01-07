@@ -235,17 +235,35 @@ function selection(cell) {
         tekiMes2.textContent = "";
         tekiKekka.textContent = "";
         replay.setAttribute("style", "display: none");
+        kiroku('all', 0);
         init();
+        setUserShip();
         roboInit();
+        play();
     });
 
 	function kiroku(name, c) {
 		const ship = {SeaTiger: 0, Papiyon: 1, Mermaid: 2};
-		const ele1 = document.getElementsByClassName('dotComName')[ship[name]];
-		const ele2 = document.getElementsByClassName('dotComKekka')[ship[name]];
-		ele1.textContent = name;
-		ele2.textContent = c;
-		ele2.setAttribute('style', 'color: #f00', 'fontWeight: bold');
+        let ele1 = {};
+        let ele2 = {};
+        // ship[name] -- 0,1,2 が入る
+        if (Object.keys(ship).find(x => x === name)) {
+		    ele1 = document.getElementsByClassName('dotComName')[ship[name]];
+		    ele2 = document.getElementsByClassName('dotComX')[ship[name]];
+		    ele1.textContent = name;
+		    ele2.textContent = " X".repeat(c);
+ 		    ele2.setAttribute('style', 'display: inline-block');
+        }
+        else if (name === "all" && c === 0) {
+            // x -- 'SeaTiger', 'Papiyon', 'Mermaid' が入る
+            Object.keys(ship).map(x => {
+		        ele1 = document.getElementsByClassName('dotComName')[ship[x]];
+		        ele2 = document.getElementsByClassName('dotComX')[ship[x]];
+                ele1.textContent = "";
+                ele2.textContent = "";
+		        ele2.setAttribute('style', 'display: none');
+            });
+        }
 	}
 
 	let dotShip = "";
@@ -463,6 +481,8 @@ function writeShip(idname, loc) {
     userShip.textContent = loc.join(" ");
 }
 
+// roboの攻撃結果を判定する
+// @param: String gs -- インスタンス robo から受け取った文字列 
 function checkRoboGuess(gs) {
     roboNumOfGuess++;
 
@@ -486,7 +506,8 @@ function checkRoboGuess(gs) {
         // 潜水艦の数を1つ減らす。
         myNumOfSubmarin--;
     }
-    
+
+    // 判定結果を インスタンスrobo に返す
     return result;
 }
 

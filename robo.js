@@ -42,21 +42,31 @@ export class Robo {
 
     attack () {
         let target = "";
-        let index = 0;
+        let index = -1;
         
         console.log('lockOnMode:' + this.lockOnMode);
         if (this.lockOnMode) {
             target = this.newTarget;
             index = this.area.indexOf(target);
-        } else {
+        }
+        // lockOnMode===true で、新しいtargetをよう見つけなかったら、
+        // とりあえずrandomでtargetを決める。
+        if (index === -1) {
             let length = this.area.length;                    // length = 49
             index = Math.floor(Math.random() * length);   // 0 〜 48
             target = this.area[index];
         }
         console.log('Target: ' + target);
+        // targetが見つかったら、処理をいったんsubmarinGame.jsにもどす
         return target;
     }
 
+    /**
+     * submarinGame.js の checkRoboGuessから受け取る
+     * @param: String target -- attack() で決定した攻撃目標
+     *         Object result -- submarinGame.js の checkRoboGuess() からの
+     *                        返答
+     */
     getback(target, result) {
         // let result = checkRoboGuess(target);
         // 攻撃したセルを対象セルからはずす
