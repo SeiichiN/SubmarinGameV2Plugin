@@ -68,6 +68,20 @@ function play() {
 
                 </table>
                 <section class="score">
+                	<div id="kekka-illust">
+                		<div class="dotCom" id="dotCom1">
+                			<span class="dotComName"></span><!-- SeaTiger -->
+                			<span class="dotComKekka"></span>
+                		</div>
+                		<div class="dotCom" id="dotCom2">
+                			<span class="dotComName"></span><!-- Papiyon -->
+                			<span class="dotComKekka"></span>
+                		</div>
+                		<div class="dotCom" id="dotCom3">
+                			<span class="dotComName"></span><!-- Mermaid -->
+                			<span class="dotComKekka"></span>
+                		</div>
+                	</div>
                     <p id="kekka"></p>
                     <div id="mes1"></div>
                     <div id="mes2"></div>

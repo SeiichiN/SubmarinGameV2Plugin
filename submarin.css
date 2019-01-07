@@ -68,6 +68,17 @@
     display: none;
 }
 
+#submarin-game #kekka-illust {
+	float: right;
+	width: 200px;
+}
+
+#submarin-game .dotCom {
+	background-image: url(submarin.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+}
+
 #submarin-game #players-set {
 	width: 270px;
 }

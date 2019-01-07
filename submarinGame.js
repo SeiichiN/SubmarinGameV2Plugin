@@ -11,7 +11,8 @@ import * as myRobo from './robo.js';
  *   それが潜水艦の大きさとなる。
  *   （例）[2, 3, 4]
  *   ユーザーは、何番目のマス目に潜水艦があるかを当てる。
- *   3つ当たれば「撃沈」となる。 * 
+ *   3つ当たれば「撃沈」となる。
+ * @Author: Seiichi Nukayama
  */
 class Submarin {
     constructor() {
@@ -102,10 +103,10 @@ class GameHelper {
             incr = GRID_LENGTH;
         } 
 
-        // location には、0 〜 48 の数字がはいる。
+        // location には、0 ? 48 の数字がはいる。
         // coords は、潜水艦(セル３つ分)。候補となるlocation番号を保持する。
         while (success === false && attempts++ < 200) {
-            // 0〜48のどれかをランダムに選ぶ
+            // 0?48のどれかをランダムに選ぶ
             location = Math.floor(Math.random() * GRID_SIZE);
             success = true;
             x = 0;
@@ -134,7 +135,7 @@ class GameHelper {
         let row = 0;
         let col = 0;
         while (x < subSize) {
-            // coords[x]には、0 〜 48 の数字が格納されている。
+            // coords[x]には、0 ? 48 の数字が格納されている。
             this.grid[coords[x]] = 1;  // そのセルを使用済みとする。
             row = Math.floor(coords[x] / GRID_LENGTH);   // 縦番号
             col = coords[x] % GRID_LENGTH;               // 横番号
@@ -238,6 +239,17 @@ function selection(cell) {
         roboInit();
     });
 
+	function kiroku(name, c) {
+		const ship = {SeaTiger: 0, Papiyon: 1, Mermaid: 2};
+		const ele1 = document.getElementsByClassName('dotComName')[ship[name]];
+		const ele2 = document.getElementsByClassName('dotComKekka')[ship[name]];
+		ele1.textContent = name;
+		ele2.textContent = c;
+		ele2.setAttribute('style', 'color: #f00', 'fontWeight: bold');
+	}
+
+	let dotShip = "";
+	let tar = {};
     let hit = false;
     for (const [k, v] of res) {
         switch(v) {
@@ -249,6 +261,10 @@ function selection(cell) {
                     {opacity: 1, backgroundColor: "#f00"},
                     {opacity: 1, backgroundColor: "#fff"}
                 ], { duration: 1000 });
+                tar = submarinList.filter(x => x.name === k);
+                console.log(tar[0].numOfHits);
+                console.log(k);
+                kiroku(k, tar[0].numOfHits);
                 break;
             case "撃沈":
  		        ele.textContent = "@";
@@ -258,6 +274,7 @@ function selection(cell) {
                     {opacity: 1, backgroundColor: "#f00"},
                     {opacity: 1, backgroundColor: "#fff"}
                 ], { duration: 1000, iterations: 2 });
+				kiroku(k, 3);
                 break;
             default:
                 ele.textContent = "x";
@@ -270,6 +287,7 @@ function selection(cell) {
         }
         if (hit) break;
     }
+    
                 
     if (numOfSubmarin === 0) {
         message1.textContent = "おめでとう。全て撃沈しました。";
@@ -349,7 +367,7 @@ function play() {
 }
 
 /**
- * HTMLの<table>の<td>の'#A1'〜'#G7'までのセルに'.'を入れる
+ * HTMLの<table>の<td>の'#A1'?'#G7'までのセルに'.'を入れる
  */
 function initCells() {
     const alpha = "ABCDEFG";
