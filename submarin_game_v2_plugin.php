@@ -4,7 +4,9 @@
  * Plugin Name: Submarin Game V2 Plugin
  * Description: This is Submarin Game. Short Code is "insert_submarin".
  * Version: 2.0
+ * URL: https://github.com/SeiichiN/SubmarinGameV2Plugin.git
  * Author: Seiichi Nukayama
+ * URL: http://www.billies-works.com/
  */
 
 function add_files() {
@@ -13,6 +15,7 @@ function add_files() {
 }
 add_action('wp_enqueue_scripts', 'add_files');
 
+// 出力するタグを修正 -- type="module" を追加
 function add_module_to_script( $tag, $handle, $src ) {
 	if ('submarinGame_js' === $handle) {
 		$tag = '<script type="module" src="' . esc_url($src) . '"></script>';
