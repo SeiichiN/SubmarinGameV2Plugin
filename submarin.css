@@ -103,6 +103,16 @@
 	float: right;
 }
 
+#submarin-game .kekka-ship {
+    background-image: url(submarin.png);
+	background-repeat: no-repeat;
+	background-position: right center;
+    width: 100px;
+    color: #f00;
+    font-weight: bold;
+    text-align: center;
+}
+
 @media screen and (min-width: 768px) {
     #submarin-game #howto-btn {
         position: absolute;

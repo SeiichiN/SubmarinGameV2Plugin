@@ -236,9 +236,12 @@ function selection(cell) {
         tekiKekka.textContent = "";
         replay.setAttribute("style", "display: none");
         kiroku('all', 0);
+        kekka_clear();
         init();
         setUserShip();
         roboInit();
+        // ユーザーの命中された数はクロージャを使っている。
+        countDamage = makeCountDamage();
         play();
     });
 
@@ -318,7 +321,16 @@ function selection(cell) {
         let mykekka = document.getElementById(idname);
         let mark = "X".repeat(times);
         mykekka.textContent = mark;
-        mykekka.setAttribute('style', 'color: #f00', 'fontWeight: bold');
+        mykekka.setAttribute('style', 'display: inline-block;');
+    }
+
+    // ユーザーの命中した潜水艦の画像を見えなくする。
+    function kekka_clear() {
+        let myShipArea = document.getElementsByClassName('kekka-ship');
+        console.log(myShipArea);
+        for (let x = 0; x < myShipArea.length; x++) {
+            myShipArea[x].setAttribute('style', 'display: none;');
+        }
     }
 
     // 敵の攻撃
