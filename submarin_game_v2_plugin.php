@@ -35,7 +35,7 @@ function play() {
                 <button id="howto-btn">あそびかた</button>
 			    <aside class="des" id="des-howto-play">
                     <header class="clearfix">
-                        <img id="close-des" src="close.gif" alt="close">
+                        <img id="close-des" src="<?php echo plugins_url('close.gif', __FILE__); ?>" alt="close">
                         <h1>あそびかた</h1>
                     </header>
 				    <p>この海域には、敵潜水艦が3隻潜んでいます。<br>
